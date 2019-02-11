@@ -1,0 +1,32 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Membership";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string userId = string.Empty;
+    string userRoleId = string.Empty;
+    string[] userDataInfos = new[] { string.Empty, string.Empty, string.Empty, string.Empty };
+
+    if (Context.User.Claims.Any())
+    {
+        userId = User.FindFirst(claim => claim.Type.Equals(ClaimTypes.Name)).Value;
+        userRoleId = User.FindFirst(claim => claim.Type.Equals(ClaimTypes.Role)).Value;
+        userDataInfos = User.FindFirst(claim => claim.Type.Equals(ClaimTypes.UserData)).Value.Split("|");
+
+    }
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-info">@Html.Raw(TempData["Message"])</div>
+<div class="text-danger">@Html.Raw(ViewData["Message"])</div>
+
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <div class="text-danger">@($"{userId}({userDataInfos[2]}) are {userRoleId}({userDataInfos[0]})")</div>
+    <a asp-controller="Membership" asp-action="LogoutAsync" class="btn btn-primary">Membership Logout</a>
+    <form method="POST" asp-controller="Membership" asp-action="WithdrawnAsync" onsubmit="btnWithdrawn.disabled = true; return true;">
+        <input type="hidden" name="UserId" value="@Context.User.Identity.Name" />
+        <input type="password" name="Password" placeholder="Password" value="" autofocus/>
+        <button type="submit" name="btnWithdrawn" class="btn btn-primary">Membership Withdrawn</button>
+    </form>
+}

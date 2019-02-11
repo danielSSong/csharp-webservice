@@ -1,0 +1,35 @@
+﻿@model List<ItemInfo>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+<script>
+    $("button[name='btnAdd']").click(function () {
+        frmItems.action = "@Url.Action("AddCart", "Data")";
+    });
+    $("button[name='btnRemove']").click(function () {
+        frmItems.action = "@Url.Action("RemoveCart", "Data")";
+    });
+    </script>
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form id="frmItems" method="POST" onsubmit="btnAdd.disabled = true; btnRemove.disabled = true; return true;">
+    <ul>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <li>Item no: @item.ItemNo, Item Name: @item.ItemName</li>
+            }
+        }
+        else
+        {
+            <li class="text-info">@ViewData["Message"]</li>
+        }
+    </ul>
+    <button type="submit" name="btnAdd">Item Add</button>
+    <button type="submit" name="btnRemove">Item Remove</button>
+</form>
