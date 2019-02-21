@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<key id="db6e4b10-3391-4c0c-b322-6efb3ddf2934" version="1">
+  <creationDate>2019-02-13T06:12:42.1922615Z</creationDate>
+  <activationDate>2019-02-13T06:12:42.0832552Z</activationDate>
+  <expirationDate>2019-02-20T06:12:42.0832552Z</expirationDate>
+  <descriptor deserializerType="Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+    <descriptor>
+      <!-- Algorithms provided by Windows CNG, using CBC-mode encryption with HMAC validation -->
+      <encryption algorithm="AES" keyLength="256" />
+      <hash algorithm="SHA512" />
+      <masterKey p4:requiresEncryption="true" xmlns:p4="http://schemas.asp.net/2015/03/dataProtection">
+        <!-- Warning: the key below is in an unencrypted form. -->
+        <value>vgvlQEtuaZQTC5LcM9064mBcRooVgsBXlMz8LPkS0DOXiEGdn0reyP1kkB7FXhhoIC9BU4HzFxmch4ljEjp4TA==</value>
+      </masterKey>
+    </descriptor>
+  </descriptor>
+</key>
